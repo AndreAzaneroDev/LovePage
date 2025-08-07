@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Para Mi Amor</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sección principal destacada -->
+        <section class="hero">
+            <img src="/src/images/gatitos.jpg" alt="Nosotros" class="hero-img" />
+            <h1 class="hero-title">Tú y Yo</h1>
+            <p class="hero-text">Un solo camino, un solo amor, un solo destino... juntos.</p>
+        </section>
+
+        <!-- Caja de desbloqueo -->
+        <div class="unlock-box">
+            <h2>🔐 Sección privada de amor</h2>
+            <p>Esta parte es solo para ti</p>
+            <p class="hint">Pista: la fecha en la que comenzó nuestra historia (ej. 01/01/2001)</p>
+            <input type="password" id="secretPassword" placeholder="Ingresa la fecha aquí..." />
+            <button onclick="unlockSection()">💖 Desbloquear</button>
+            <p id="unlockMessage"></p>
+        </div>
+
+
+        <!-- Sección bloqueada -->
+        <div id="lockedSection" class="locked hidden">
+            <p class="message">Algunos de nuestros recuerdos más lindos...</p>
+
+            <div class="section">
+                <h2>Las fotos son hermosas gracias a ti 📷</h2>
+                <button onclick="openModal('modal1')">Ver imagen</button>
+            </div>
+
+            <div class="section">
+                <h2>Un paseito al parque de las leyendas uwu 🐅</h2>
+                <p>Un día lleno de sol, risas y amor.</p>
+                <button onclick="openModal('modal2')">Ver imagen</button>
+            </div>
+
+            <div class="section">
+                <h2>Princesita de Disney 👸👑</h2>
+                <p>Hermosa y divina</p>
+                <button onclick="openModal('modal3')">Ver imagen</button>
+            </div>
+
+            <div class="section">
+                <h2>Primera salidita con el bombolbee 🚗</h2>
+                <p>Hermosa con y sin labial - RADIANTE</p>
+                <button onclick="openModal('modal4')">Ver imagen</button>
+            </div>
+
+            <div class="section">
+                <h2>Paseito en Ventanilla 🌅</h2>
+                <p>El sunset, heladitos y contigo a mi lado</p>
+                <button onclick="openModal('modal5')">Ver imagen</button>
+            </div>
+
+            <div class="section">
+                <h2>El acosador detrás viéndonos 💀</h2>
+                <p>Terrible susto</p>
+                <button onclick="openModal('modal6')">Ver imagen</button>
+            </div>
+
+            <div class="section">
+                <h2>Los lonchecitos en casita uwu ☕🍳</h2>
+                <button onclick="openModal('modal7')">Ver imagen</button>
+            </div>
+
+            <div class="section">
+                <h2>Mi felicidad siempre tendrá nombre y apellido 💖</h2>
+                <p>Diana Giraldo</p>
+                <button onclick="openModal('modal8')">Ver imagen</button>
+            </div>
+
+             <div class="section">
+                <h2>El carry de mi vida 🎯</h2>
+                <p>y del val 🎮</p>
+                <button onclick="openModal('modal9')">Ver imagen</button>
+            </div>
+
+            <p id="loveTime"></p>
+
+        </div>
+    </div>
+
+    <!-- Modales -->
+    <div id="modal1" class="modal">
+        <span class="close" onclick="closeModal('modal1')">&times;</span>
+        <img src="/src/images/juntos3.jpeg" alt="Recuerdo 1" />
+    </div>
+
+    <div id="modal2" class="modal">
+        <span class="close" onclick="closeModal('modal2')">&times;</span>
+        <img src="/src/images/paisaje.jpeg" alt="Parque de las Leyendas" />
+    </div>
+
+    <div id="modal3" class="modal">
+        <span class="close" onclick="closeModal('modal3')">&times;</span>
+        <img src="/src/images/toxic.jpeg" alt="Princesita" />
+    </div>
+
+    <div id="modal4" class="modal">
+        <span class="close" onclick="closeModal('modal4')">&times;</span>
+        <img src="/src/images/bombolbee.jpeg" alt="Bombolbee" />
+    </div>
+
+    <div id="modal5" class="modal">
+        <span class="close" onclick="closeModal('modal5')">&times;</span>
+        <img src="/src/images/motocross.jpeg" alt="Ventanilla" />
+    </div>
+
+    <div id="modal6" class="modal">
+        <span class="close" onclick="closeModal('modal6')">&times;</span>
+        <img src="/src/images/oso.jpeg" alt="Susto" />
+    </div>
+
+    <div id="modal7" class="modal">
+        <span class="close" onclick="closeModal('modal7')">&times;</span>
+        <img src="/src/images/lonchecito.jpeg" alt="Lonche" />
+    </div>
+
+    <div id="modal8" class="modal">
+        <span class="close" onclick="closeModal('modal8')">&times;</span>
+        <img src="/src/images/juntos4.jpeg" alt="Final" />
+    </div>
+
+    <div id="modal9" class="modal">
+        <span class="close" onclick="closeModal('modal9')">&times;</span>
+        <img src="/src/images/carry.png" alt="carry" />
+    </div>
+
+    <!-- Música -->
+    <audio id="bgMusic" autoplay loop>
+        <source src="/src/musics/chill_love_music_rec.mp3" type="audio/mpeg" />
+        Tu navegador no soporta audio HTML5.
+    </audio>
+
+    <button class="music-button" onclick="toggleMusic()">🔊 Música</button>
+
+    <!-- Corazones flotando -->
+    <div class="heart-container">
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+    </div>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+
+</html>
