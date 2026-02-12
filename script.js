@@ -28,20 +28,48 @@ function toggleMusic() {
 }
 
 function updateLoveTime() {
-  const start = new Date("2022-10-02T06:48:00"); // fecha de inicio
+  const start = new Date("2022-02-10T06:48:00");
   const now = new Date();
-  const diff = now - start;
 
-  const totalSeconds = Math.floor(diff / 1000);
+  let years = now.getFullYear() - start.getFullYear();
+  let months = now.getMonth() - start.getMonth();
+  let days = now.getDate() - start.getDate();
+  let hours = now.getHours() - start.getHours();
+  let minutes = now.getMinutes() - start.getMinutes();
+  let seconds = now.getSeconds() - start.getSeconds();
+  //console.log(years, months, days, hours, minutes, seconds);
+  
+  
+  if (seconds < 0) {
+    seconds += 60;
+    minutes--;
+  }
 
-  const days = Math.floor(totalSeconds / (60 * 60 * 24));
-  const hours = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
-  const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
-  const seconds = totalSeconds % 60;
+  if (minutes < 0) {
+    minutes += 60;
+    hours--;
+  }
+
+  if (hours < 0) {
+    hours += 24;
+    days--;
+  }
+
+  if (days < 0) {
+    const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+    days += lastMonth.getDate();
+    months--;
+  }
+
+  if (months < 0) {
+    months += 12;
+    years--;
+  }
 
   document.getElementById("loveTime").textContent =
-    `Llevamos ${days} días, ${hours} horas, ${minutes} minutos y ${seconds} segundos juntos 💞`;
+    `Llevamos ${years} años, ${months} meses, ${days} días, ${hours} horas, ${minutes} minutos y ${seconds} segundos juntos`;
 }
+
 
 setInterval(updateLoveTime, 1000);
 
