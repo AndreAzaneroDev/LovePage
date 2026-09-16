@@ -12,7 +12,7 @@ function unlockSection() {
     message.textContent = "Contraseña incorrecta.";
   }
 }
-
+//test
 
 function openModal(id) {
   document.getElementById(id).style.display = "block";
