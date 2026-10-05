@@ -40,19 +40,31 @@
         </section>
 
         <section class="unlock-section" id="la-clave">
-            <div class="section-index"><span>01</span><span>LA CLAVE</span></div>
+            <div class="section-index"><span>01</span><span>EL TEST</span></div>
             <div class="unlock-content">
-                <p class="eyebrow">SOLO NOSOTROS SABEMOS</p>
-                <h2>¿Cuándo empezó<br />todo esto?</h2>
-                <p class="unlock-hint">Escribe la fecha en que comenzó nuestra historia.</p>
-                <form class="unlock-form" id="unlockForm">
-                    <label class="visually-hidden" for="secretPassword">Fecha especial</label>
-                    <input type="text" id="secretPassword" placeholder="DD/MM/AAAA" inputmode="numeric" autocomplete="off" />
-                    <button class="primary-button" type="submit">Probar la fecha <span aria-hidden="true">→</span></button>
-                </form>
-                <p id="unlockMessage" class="feedback" aria-live="polite"></p>
+                <p class="eyebrow">¿QUÉ TANTO RECUERDAS?</p>
+                <h2>Un poquito de<br />nuestra historia.</h2>
+                <div class="quiz-panel" id="quizPanel">
+                    <div class="quiz-progress-row">
+                        <span id="quizProgressLabel">PREGUNTA 1 / 5</span>
+                        <span id="quizScoreLabel">0 RESPUESTAS</span>
+                    </div>
+                    <div class="quiz-progress-track" role="progressbar" aria-label="Progreso del test" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0">
+                        <span id="quizProgressFill"></span>
+                    </div>
+                    <div class="quiz-photo-wrap hidden" id="quizPhotoWrap">
+                        <img id="quizPhoto" src="" alt="" />
+                    </div>
+                    <h3 class="quiz-question" id="quizQuestion"></h3>
+                    <div class="quiz-options" id="quizOptions"></div>
+                    <div class="quiz-action-row">
+                        <p id="quizFeedback" class="feedback" aria-live="polite"></p>
+                        <button class="primary-button" id="quizAction" type="button">Comprobar <span aria-hidden="true">→</span></button>
+                    </div>
+                </div>
+                <p class="quiz-success hidden" id="quizSuccess"></p>
             </div>
-            <div class="unlock-doodle" aria-hidden="true">10<br /><span>FEB</span><br />22</div>
+            <div class="unlock-doodle" aria-hidden="true">5<br /><span>PREGUNTAS</span><br />♥</div>
         </section>
 
         <section id="lockedSection" class="memories-section hidden" aria-live="polite">
@@ -97,6 +109,22 @@
                 <article class="memory-card" data-image="carry.png" data-alt="Mi carry favorito" data-title="El carry de mi vida">
                     <div class="memory-image"><img src="src/images/carry.png" alt="" loading="lazy" /><span class="lock-mark" aria-hidden="true">✳</span></div>
                     <div class="memory-meta"><span>RECUERDO 09</span><span>♥</span></div><h3>El carry de mi vida</h3><p>Y del Val.</p><button class="reveal-button" type="button">Revelar recuerdo <span aria-hidden="true">↗</span></button>
+                </article>
+                <article class="memory-card" data-image="didisolaregia.jpeg" data-alt="Se me detiene el mundo al verte" data-title="Se me detiene el mundo al verte">
+                    <div class="memory-image"><img src="src/images/didisolaregia.jpeg" alt="" loading="lazy" /><span class="lock-mark" aria-hidden="true">✳</span></div>
+                    <div class="memory-meta"><span>RECUERDO 10</span><span>♥</span></div><h3>Se me detiene el mundo al verte</h3><button class="reveal-button" type="button">Revelar recuerdo <span aria-hidden="true">↗</span></button>
+                </article>
+                <article class="memory-card" data-image="fotopresumo.jpeg" data-alt="Foto de presumo" data-title="Foto de presumo">
+                    <div class="memory-image"><img src="src/images/fotopresumo.jpeg" alt="" loading="lazy" /><span class="lock-mark" aria-hidden="true">✳</span></div>
+                    <div class="memory-meta"><span>RECUERDO 11</span><span>♥</span></div><h3>Asi me encanta presumirte a donde vaya...</h3><button class="reveal-button" type="button">Revelar recuerdo <span aria-hidden="true">↗</span></button>
+                </article>
+                <article class="memory-card" data-image="didiplayahermosa.jpeg" data-alt="didiplayahermosa" data-title="didiplayahermosa">
+                    <div class="memory-image"><img src="src/images/didiplayahermosa.jpeg" alt="" loading="lazy" /><span class="lock-mark" aria-hidden="true">✳</span></div>
+                    <div class="memory-meta"><span>RECUERDO 12</span><span>♥</span></div><h3>Uy pero mis ojos ya tienen dueña</h3><button class="reveal-button" type="button">Revelar recuerdo <span aria-hidden="true">↗</span></button>
+                </article>
+                <article class="memory-card" data-image="lugarfavorito.jpeg" data-alt="Lugar favorito" data-title="Lugar favorito">
+                    <div class="memory-image"><img src="src/images/lugarfavorito.jpeg" alt="" loading="lazy" /><span class="lock-mark" aria-hidden="true">✳</span></div>
+                    <div class="memory-meta"><span>RECUERDO 13</span><span>♥</span></div><h3>Mi lugar favorito en todo el mundo</h3><button class="reveal-button" type="button">Revelar recuerdo <span aria-hidden="true">↗</span></button>
                 </article>
             </div>
         </section>

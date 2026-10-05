@@ -10,6 +10,42 @@ let lastFocusedElement = null;
 let isScratching = false;
 let lastScratchPoint = null;
 let scratchDistance = 0;
+const quizQuestions = [
+  {
+    question: "¿Cuál fue nuestro primer beso?",
+    options: ["Afuera de tu casa", "Cuando me acompañaste al dentista", "En un parque", "En San Miguel"],
+    answer: 0,
+    image: "fotopregunta1.jpeg",
+    alt: "Una foto de nuestro primer beso"
+  },
+  {
+    question: "¿Cuál fue la primera película que vimos juntos?",
+    options: ["Tren Bala", "Mujer Rey", "Spiderman", "Black Adam"],
+    answer: 2
+  },
+  {
+    question: "¿Cuál fue el primer regalo que te hice?",
+    options: ["Flores", "Perfume", "Peluche", "Ropa"],
+    answer: 2
+  },
+  {
+    question: "¿Cuándo tomamos esta foto?",
+    options: ["Cuando ingresaste a BanBif", "Cuando terminaste la universidad", "Luego de ingresar a TP", "En un aniversario nuestro"],
+    answer: 2,
+    image: "fotopregunta4.jpeg",
+    alt: "Una foto del día en que ingresaste a TP"
+  },
+  {
+    question: "¿Qué es lo que más me gusta de ti?",
+    options: ["Tus ojos", "Tus labios", "Tu rostro completo", "Todas las anteriores"],
+    answer: 3,
+    image: "fotopregunta5.jpeg",
+    alt: "Una foto de Diana"
+  }
+];
+let currentQuestionIndex = 0;
+let selectedOptionIndex = null;
+let questionAnswered = false;
 
 document.getElementById("enterButton").addEventListener("click", () => {
   entryScreen.classList.add("is-leaving");
@@ -18,25 +54,99 @@ document.getElementById("enterButton").addEventListener("click", () => {
   music.play().then(updateMusicButton).catch(() => {});
 });
 
-document.getElementById("unlockForm").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const input = document.getElementById("secretPassword").value.trim().replace(/[.-]/g, "/");
-  const section = document.getElementById("lockedSection");
-  const message = document.getElementById("unlockMessage");
+function renderQuizQuestion() {
+  const question = quizQuestions[currentQuestionIndex];
+  const photoWrap = document.getElementById("quizPhotoWrap");
+  const photo = document.getElementById("quizPhoto");
+  const progress = document.querySelector(".quiz-progress-track");
 
-  if (input === "10/02/2022") {
-    section.classList.remove("hidden");
-    message.textContent = "Lo recordaste. Ahora viene la mejor parte ♥";
-    document.getElementById("memoryGrid").scrollIntoView({ behavior: "smooth", block: "start" });
+  document.getElementById("quizProgressLabel").textContent = `PREGUNTA ${currentQuestionIndex + 1} / ${quizQuestions.length}`;
+  document.getElementById("quizScoreLabel").textContent = `${currentQuestionIndex} ${currentQuestionIndex === 1 ? "RESPUESTA CORRECTA" : "RESPUESTAS CORRECTAS"}`;
+  progress.setAttribute("aria-valuenow", String(currentQuestionIndex + 1));
+  document.getElementById("quizProgressFill").style.width = `${((currentQuestionIndex + 1) / quizQuestions.length) * 100}%`;
+  document.getElementById("quizQuestion").textContent = question.question;
+  document.getElementById("quizFeedback").textContent = "";
+  document.getElementById("quizFeedback").classList.remove("is-error");
+  document.getElementById("quizAction").innerHTML = 'Comprobar <span aria-hidden="true">→</span>';
+
+  if (question.image) {
+    photoWrap.classList.remove("hidden");
+    photo.alt = question.alt;
+    photo.onerror = () => photoWrap.classList.add("hidden");
+    photo.onload = () => photoWrap.classList.remove("hidden");
+    photo.src = `src/images/${question.image}`;
   } else {
-    message.textContent = "Casi... piensa en el día que comenzó todo.";
-    document.getElementById("secretPassword").setAttribute("aria-invalid", "true");
+    photo.removeAttribute("src");
+    photoWrap.classList.add("hidden");
   }
+
+  document.getElementById("quizOptions").innerHTML = question.options.map((option, index) =>
+    `<button class="quiz-option" type="button" data-option="${index}" aria-pressed="false"><span class="option-letter">${String.fromCharCode(65 + index)}</span><span>${option}</span></button>`
+  ).join("");
+  selectedOptionIndex = null;
+  questionAnswered = false;
+}
+
+document.getElementById("quizOptions").addEventListener("click", (event) => {
+  const option = event.target.closest(".quiz-option");
+  if (!option || questionAnswered) return;
+
+  document.querySelectorAll(".quiz-option").forEach((button) => {
+    button.classList.remove("is-selected", "is-wrong");
+    button.setAttribute("aria-pressed", "false");
+  });
+  option.classList.add("is-selected");
+  option.setAttribute("aria-pressed", "true");
+  selectedOptionIndex = Number(option.dataset.option);
+  document.getElementById("quizFeedback").textContent = "";
+  document.getElementById("quizFeedback").classList.remove("is-error");
 });
 
-document.getElementById("secretPassword").addEventListener("input", (event) => {
-  event.currentTarget.removeAttribute("aria-invalid");
+document.getElementById("quizAction").addEventListener("click", () => {
+  const feedback = document.getElementById("quizFeedback");
+  const question = quizQuestions[currentQuestionIndex];
+
+  if (questionAnswered) {
+    if (currentQuestionIndex === quizQuestions.length - 1) {
+      document.getElementById("quizPanel").classList.add("hidden");
+      document.getElementById("quizSuccess").classList.remove("hidden");
+      document.getElementById("lockedSection").classList.remove("hidden");
+      document.getElementById("memoryGrid").scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+    currentQuestionIndex++;
+    renderQuizQuestion();
+    return;
+  }
+
+  if (selectedOptionIndex === null) {
+    feedback.textContent = "Elige una respuesta para continuar.";
+    feedback.classList.add("is-error");
+    return;
+  }
+
+  if (selectedOptionIndex !== question.answer) {
+    feedback.textContent = "Esa no era... ¡inténtalo otra vez!";
+    feedback.classList.add("is-error");
+    document.querySelector(`.quiz-option[data-option="${selectedOptionIndex}"]`).classList.add("is-wrong");
+    return;
+  }
+
+  questionAnswered = true;
+  document.querySelectorAll(".quiz-option").forEach((button) => { button.disabled = true; });
+  document.querySelector(`.quiz-option[data-option="${selectedOptionIndex}"]`).classList.add("is-correct");
+  const correctAnswers = currentQuestionIndex + 1;
+  document.getElementById("quizScoreLabel").textContent = `${correctAnswers} ${correctAnswers === 1 ? "RESPUESTA CORRECTA" : "RESPUESTAS CORRECTAS"}`;
+  feedback.textContent = "¡Correcto! Esa sí que la recuerdas. ♥";
+  feedback.classList.remove("is-error");
+  document.getElementById("quizAction").innerHTML = currentQuestionIndex === quizQuestions.length - 1
+    ? 'Abrir nuestros recuerdos <span aria-hidden="true">↗</span>'
+    : 'Siguiente pregunta <span aria-hidden="true">→</span>';
 });
+
+document.getElementById("quizSuccess").textContent = "¡Cinco de cinco! Nuestra historia está en buenas manos. ♥";
+
+renderQuizQuestion();
 
 document.getElementById("musicButton").addEventListener("click", () => {
   if (music.paused) {
