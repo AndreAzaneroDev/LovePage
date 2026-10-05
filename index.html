@@ -1,159 +1,129 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Para Mi Amor</title>
+    <meta name="theme-color" content="#f6eee4" />
+    <title>Una historia nuestra</title>
     <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-    <div class="container">
-        <!-- Sección principal destacada -->
-        <section class="hero">
-            <img src="src/images/gatitos.jpg" alt="Nosotros" class="hero-img" />
-            <h1 class="hero-title">Tú y Yo</h1>
-            <p class="hero-text">Un solo camino, un solo amor, un solo destino... juntos.</p>
+    <div class="entry-screen" id="entryScreen">
+        <div class="entry-card">
+            <p class="eyebrow">UN PEQUEÑO VIAJE EN EL TIEMPO</p>
+            <img src="src/images/gatitos.jpg" alt="Un recuerdo de nosotros" class="entry-photo" />
+            <h1>Para Diana</h1>
+            <p class="entry-note">Guardé aquí algunos pedacitos de nuestra historia.</p>
+            <button class="primary-button" id="enterButton" type="button">Abrir nuestra historia <span aria-hidden="true">↗</span></button>
+            <p class="entry-footnote">hecho con amor, solo para ti</p>
+        </div>
+    </div>
+
+    <main class="page-shell" id="pageContent" inert>
+        <header class="topbar">
+            <a class="wordmark" href="#inicio">D + A <span> / </span> desde 2022</a>
+            <button class="music-button" id="musicButton" type="button" aria-pressed="false"><span aria-hidden="true">♫</span> <span id="musicLabel">Activar música</span></button>
+        </header>
+
+        <section class="hero" id="inicio">
+            <div class="hero-copy">
+                <p class="eyebrow">NUESTRO PEQUEÑO UNIVERSO</p>
+                <h1>Tú y yo,<br /><em>en todas partes.</em></h1>
+                <p>Un solo camino, un solo amor, un montón de momentos que volvería a vivir contigo.</p>
+                <a class="text-link" href="#la-clave">Ir a nuestros recuerdos <span aria-hidden="true">↓</span></a>
+            </div>
+            <figure class="hero-figure">
+                <img src="src/images/gatitos.jpg" alt="Un recuerdo de nosotros" class="hero-img" />
+                <figcaption>una historia que sigue escribiéndose <span>♥</span></figcaption>
+            </figure>
+            <span class="hero-stamp" aria-hidden="true">T<br />+<br />D</span>
         </section>
 
-        <!-- Caja de desbloqueo -->
-        <div class="unlock-box">
-            <h2>🔐 Sección privada de amor</h2>
-            <p>Esta parte es solo para ti</p>
-            <p class="hint">Pista: la fecha en la que comenzó nuestra historia (ej. 01/01/2001)</p>
-            <input type="password" id="secretPassword" placeholder="Ingresa la fecha aquí..." />
-            <button onclick="unlockSection()">💖 Desbloquear</button>
-            <p id="unlockMessage"></p>
+        <section class="unlock-section" id="la-clave">
+            <div class="section-index"><span>01</span><span>LA CLAVE</span></div>
+            <div class="unlock-content">
+                <p class="eyebrow">SOLO NOSOTROS SABEMOS</p>
+                <h2>¿Cuándo empezó<br />todo esto?</h2>
+                <p class="unlock-hint">Escribe la fecha en que comenzó nuestra historia.</p>
+                <form class="unlock-form" id="unlockForm">
+                    <label class="visually-hidden" for="secretPassword">Fecha especial</label>
+                    <input type="text" id="secretPassword" placeholder="DD/MM/AAAA" inputmode="numeric" autocomplete="off" />
+                    <button class="primary-button" type="submit">Probar la fecha <span aria-hidden="true">→</span></button>
+                </form>
+                <p id="unlockMessage" class="feedback" aria-live="polite"></p>
+            </div>
+            <div class="unlock-doodle" aria-hidden="true">10<br /><span>FEB</span><br />22</div>
+        </section>
+
+        <section id="lockedSection" class="memories-section hidden" aria-live="polite">
+            <div class="section-index"><span>02</span><span>EL ARCHIVO</span></div>
+            <div class="memories-heading">
+                <div><p class="eyebrow">NUEVE INSTANTES, INFINITAS VECES</p><h2>Pequeñas pruebas<br />de que fuimos felices.</h2></div>
+                <p class="memory-count" id="memoryCount">0 <span>/ 9 revelados</span></p>
+            </div>
+            <div class="memory-grid" id="memoryGrid">
+                <article class="memory-card" data-image="juntos3.jpeg" data-alt="Un recuerdo juntos" data-title="Las fotos son hermosas gracias a ti">
+                    <div class="memory-image"><img src="src/images/juntos3.jpeg" alt="" loading="lazy" /><span class="lock-mark" aria-hidden="true">✳</span></div>
+                    <div class="memory-meta"><span>RECUERDO 01</span><span>♥</span></div><h3>Las fotos son hermosas gracias a ti</h3><button class="reveal-button" type="button">Revelar recuerdo <span aria-hidden="true">↗</span></button>
+                </article>
+                <article class="memory-card" data-image="paisaje.jpeg" data-alt="Paseo por el Parque de las Leyendas" data-title="Un paseíto al Parque de las Leyendas">
+                    <div class="memory-image"><img src="src/images/paisaje.jpeg" alt="" loading="lazy" /><span class="lock-mark" aria-hidden="true">✳</span></div>
+                    <div class="memory-meta"><span>RECUERDO 02</span><span>♥</span></div><h3>Un paseíto al Parque de las Leyendas</h3><p>Un día lleno de sol, risas y amor.</p><button class="reveal-button" type="button">Revelar recuerdo <span aria-hidden="true">↗</span></button>
+                </article>
+                <article class="memory-card" data-image="toxic.jpeg" data-alt="Mi princesita" data-title="Princesita de Disney">
+                    <div class="memory-image"><img src="src/images/toxic.jpeg" alt="" loading="lazy" /><span class="lock-mark" aria-hidden="true">✳</span></div>
+                    <div class="memory-meta"><span>RECUERDO 03</span><span>♥</span></div><h3>Princesita de Disney</h3><p>Hermosa y divina.</p><button class="reveal-button" type="button">Revelar recuerdo <span aria-hidden="true">↗</span></button>
+                </article>
+                <article class="memory-card" data-image="bombolbee.jpeg" data-alt="Nuestra primera salida" data-title="Primera salidita con el bombolbee">
+                    <div class="memory-image"><img src="src/images/bombolbee.jpeg" alt="" loading="lazy" /><span class="lock-mark" aria-hidden="true">✳</span></div>
+                    <div class="memory-meta"><span>RECUERDO 04</span><span>♥</span></div><h3>Primera salidita con el bombolbee</h3><p>Hermosa con y sin labial. RADIANTE.</p><button class="reveal-button" type="button">Revelar recuerdo <span aria-hidden="true">↗</span></button>
+                </article>
+                <article class="memory-card" data-image="motocross.jpeg" data-alt="Atardecer en Ventanilla" data-title="Paseíto en Ventanilla">
+                    <div class="memory-image"><img src="src/images/motocross.jpeg" alt="" loading="lazy" /><span class="lock-mark" aria-hidden="true">✳</span></div>
+                    <div class="memory-meta"><span>RECUERDO 05</span><span>♥</span></div><h3>Paseíto en Ventanilla</h3><p>El sunset, heladitos y contigo a mi lado.</p><button class="reveal-button" type="button">Revelar recuerdo <span aria-hidden="true">↗</span></button>
+                </article>
+                <article class="memory-card" data-image="oso.jpeg" data-alt="El susto de aquel paseo" data-title="El acosador detrás viéndonos">
+                    <div class="memory-image"><img src="src/images/oso.jpeg" alt="" loading="lazy" /><span class="lock-mark" aria-hidden="true">✳</span></div>
+                    <div class="memory-meta"><span>RECUERDO 06</span><span>♥</span></div><h3>El acosador detrás viéndonos</h3><p>Terrible susto.</p><button class="reveal-button" type="button">Revelar recuerdo <span aria-hidden="true">↗</span></button>
+                </article>
+                <article class="memory-card" data-image="lonchecito.jpeg" data-alt="Un lonchecito en casa" data-title="Los lonchecitos en casita">
+                    <div class="memory-image"><img src="src/images/lonchecito.jpeg" alt="" loading="lazy" /><span class="lock-mark" aria-hidden="true">✳</span></div>
+                    <div class="memory-meta"><span>RECUERDO 07</span><span>♥</span></div><h3>Los lonchecitos en casita</h3><button class="reveal-button" type="button">Revelar recuerdo <span aria-hidden="true">↗</span></button>
+                </article>
+                <article class="memory-card" data-image="juntos4.jpeg" data-alt="Diana, mi felicidad" data-title="Mi felicidad siempre tendrá nombre y apellido">
+                    <div class="memory-image"><img src="src/images/juntos4.jpeg" alt="" loading="lazy" /><span class="lock-mark" aria-hidden="true">✳</span></div>
+                    <div class="memory-meta"><span>RECUERDO 08</span><span>♥</span></div><h3>Mi felicidad siempre tendrá nombre y apellido</h3><p>Diana Giraldo.</p><button class="reveal-button" type="button">Revelar recuerdo <span aria-hidden="true">↗</span></button>
+                </article>
+                <article class="memory-card" data-image="carry.png" data-alt="Mi carry favorito" data-title="El carry de mi vida">
+                    <div class="memory-image"><img src="src/images/carry.png" alt="" loading="lazy" /><span class="lock-mark" aria-hidden="true">✳</span></div>
+                    <div class="memory-meta"><span>RECUERDO 09</span><span>♥</span></div><h3>El carry de mi vida</h3><p>Y del Val.</p><button class="reveal-button" type="button">Revelar recuerdo <span aria-hidden="true">↗</span></button>
+                </article>
+            </div>
+        </section>
+
+        <section class="time-section">
+            <p class="eyebrow">Y EL RELOJ SIGUE CORRIENDO</p>
+            <p id="loveTime">Desde el 10 de febrero de 2022, eligiéndonos.</p>
+            <div id="timeUnits" class="time-units" aria-live="off"></div>
+        </section>
+        <footer class="page-footer">Andre + Diana <span>♥</span> para siempre un poquito más</footer>
+    </main>
+
+    <div class="reveal-modal" id="revealModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+        <button class="modal-close" id="closeModal" type="button" aria-label="Cerrar">×</button>
+        <div class="modal-content">
+            <p class="eyebrow">UN RECUERDO A LA VEZ</p>
+            <h2 id="modalTitle"></h2>
+            <div class="scratch-frame" id="scratchFrame">
+                <img id="modalImage" src="" alt="" />
+                <canvas id="scratchCanvas" aria-label="Raspa para descubrir la foto"></canvas>
+                <div class="scratch-instruction" id="scratchInstruction"><span>✳</span>Raspa aquí para descubrir</div>
+            </div>
+            <p class="modal-caption" id="modalCaption" aria-live="polite">Desliza el dedo o el cursor sobre la foto.</p>
         </div>
-
-
-        <!-- Sección bloqueada -->
-        <div id="lockedSection" class="locked hidden">
-            <p class="message">Algunos de nuestros recuerdos más lindos...</p>
-
-            <div class="section">
-                <h2>Las fotos son hermosas gracias a ti 📷</h2>
-                <button onclick="openModal('modal1')">Ver imagen</button>
-            </div>
-
-            <div class="section">
-                <h2>Un paseito al parque de las leyendas uwu 🐅</h2>
-                <p>Un día lleno de sol, risas y amor.</p>
-                <button onclick="openModal('modal2')">Ver imagen</button>
-            </div>
-
-            <div class="section">
-                <h2>Princesita de Disney 👸👑</h2>
-                <p>Hermosa y divina</p>
-                <button onclick="openModal('modal3')">Ver imagen</button>
-            </div>
-
-            <div class="section">
-                <h2>Primera salidita con el bombolbee 🚗</h2>
-                <p>Hermosa con y sin labial - RADIANTE</p>
-                <button onclick="openModal('modal4')">Ver imagen</button>
-            </div>
-
-            <div class="section">
-                <h2>Paseito en Ventanilla 🌅</h2>
-                <p>El sunset, heladitos y contigo a mi lado</p>
-                <button onclick="openModal('modal5')">Ver imagen</button>
-            </div>
-
-            <div class="section">
-                <h2>El acosador detrás viéndonos 💀</h2>
-                <p>Terrible susto</p>
-                <button onclick="openModal('modal6')">Ver imagen</button>
-            </div>
-
-            <div class="section">
-                <h2>Los lonchecitos en casita uwu ☕🍳</h2>
-                <button onclick="openModal('modal7')">Ver imagen</button>
-            </div>
-
-            <div class="section">
-                <h2>Mi felicidad siempre tendrá nombre y apellido 💖</h2>
-                <p>Diana Giraldo</p>
-                <button onclick="openModal('modal8')">Ver imagen</button>
-            </div>
-
-             <div class="section">
-                <h2>El carry de mi vida 🎯</h2>
-                <p>y del val 🎮</p>
-                <button onclick="openModal('modal9')">Ver imagen</button>
-            </div>
-
-            <p id="loveTime"></p>
-
-        </div>
     </div>
 
-    <!-- Modales -->
-    <div id="modal1" class="modal">
-        <span class="close" onclick="closeModal('modal1')">&times;</span>
-        <img src="src/images/juntos3.jpeg" alt="Recuerdo 1" />
-    </div>
-
-    <div id="modal2" class="modal">
-        <span class="close" onclick="closeModal('modal2')">&times;</span>
-        <img src="src/images/paisaje.jpeg" alt="Parque de las Leyendas" />
-    </div>
-
-    <div id="modal3" class="modal">
-        <span class="close" onclick="closeModal('modal3')">&times;</span>
-        <img src="src/images/toxic.jpeg" alt="Princesita" />
-    </div>
-
-    <div id="modal4" class="modal">
-        <span class="close" onclick="closeModal('modal4')">&times;</span>
-        <img src="src/images/bombolbee.jpeg" alt="Bombolbee" />
-    </div>
-
-    <div id="modal5" class="modal">
-        <span class="close" onclick="closeModal('modal5')">&times;</span>
-        <img src="src/images/motocross.jpeg" alt="Ventanilla" />
-    </div>
-
-    <div id="modal6" class="modal">
-        <span class="close" onclick="closeModal('modal6')">&times;</span>
-        <img src="src/images/oso.jpeg" alt="Susto" />
-    </div>
-
-    <div id="modal7" class="modal">
-        <span class="close" onclick="closeModal('modal7')">&times;</span>
-        <img src="src/images/lonchecito.jpeg" alt="Lonche" />
-    </div>
-
-    <div id="modal8" class="modal">
-        <span class="close" onclick="closeModal('modal8')">&times;</span>
-        <img src="src/images/juntos4.jpeg" alt="Final" />
-    </div>
-
-    <div id="modal9" class="modal">
-        <span class="close" onclick="closeModal('modal9')">&times;</span>
-        <img src="src/images/carry.png" alt="carry" />
-    </div>
-
-    <!-- Música -->
-    <audio id="bgMusic" autoplay loop>
-        <source src="src/musics/chill_love_music_rec.mp3" type="audio/mpeg" />
-        Tu navegador no soporta audio HTML5.
-    </audio>
-
-    <button class="music-button" onclick="toggleMusic()">🔊 Música</button>
-
-    <!-- Corazones flotando -->
-    <div class="heart-container">
-        <div class="heart"></div>
-        <div class="heart"></div>
-        <div class="heart"></div>
-        <div class="heart"></div>
-        <div class="heart"></div>
-    </div>
-
-    <!-- Script -->
+    <audio id="bgMusic" loop preload="none"><source src="src/musics/chill_love_music_rec.mp3" type="audio/mpeg" /></audio>
     <script src="script.js"></script>
 </body>
-
 </html>
